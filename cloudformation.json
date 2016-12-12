@@ -1,0 +1,26 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "Demo stack for ARES project",
+  "Resources" : {
+    "S3BucketStaticContent" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties" : {
+        "BucketName" : "sai-ares-demo-static-site",
+        "AccessControl" : "PublicReadWrite",
+        "Tags" : [
+            {
+                "Key": "customer",
+                "Value": "aland"
+            },
+            {
+                "Key" : "project",
+                "Value": "ares"
+            }
+        ],
+        "WebsiteConfiguration" : {
+          "IndexDocument" : "index.html"
+        }
+      }
+    }
+  }
+}
