@@ -32,20 +32,20 @@
     "CodeBuildProject" : {
       "Type" : "AWS::CodeBuild::Project",
       "Properties" : {
-          "Name": "ares-demo-static-site-build-project", 
+          "Name": "ares-demo-static-site-build-project",
           "Source": {
-              "Type": "GITHUB", 
+              "Type": "GITHUB",
               "Location": "https://gcummins:1ccfa9078ca7bdfc09d9ab869b160b2b1a0d5bff@github.com/gcummins/ares.git"
-          }, 
+          },
           "Artifacts": {
-              "Type": "S3", 
+              "Type": "S3",
               "Location": {"Ref" : "S3Bucket"}
-          }, 
+          },
           "Environment": {
               "Type": "LINUX_CONTAINER",
               "Image": "aws/codebuild/java:openjdk-8",
               "ComputeType": "BUILD_GENERAL1_SMALL"
-          }, 
+          },
           "ServiceRole": "arn:aws:iam::729161019481:role/CodeBuildServiceRole"
       }
     }
