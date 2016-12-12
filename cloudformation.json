@@ -7,9 +7,9 @@
       "Description" : "Name of the bucket that holds the site",
       "Type" : "String"
     },
-    "CodeBuildProject" : {
+    "StaticSiteCodeBuildProjectName" : {
       "Default" : "sai-ares-demo-static-site-project",
-      "Description" : "Name of the CodeBuild project",
+      "Description" : "Name of the static site code build project",
       "Type" : "String"
     }
   },
@@ -31,11 +31,11 @@
         ],
         "WebsiteConfiguration" : {
           "IndexDocument" : {
-            "Fn:Join": [
+            "Fn:Join" : [
               "/",
               [
                 {
-                  "Ref": "CodeBuildProject"
+                  "Ref" : "StaticSiteCodeBuildProjectName"
                 },
                 "index.html"
               ]
