@@ -6,6 +6,11 @@
       "Default" : "sai-ares-demo-static-site",
       "Description" : "Name of the bucket that holds the site",
       "Type" : "String"
+    },
+    "CodeBuildProject" : {
+      "Default" : "sai-ares-demo-static-site-project",
+      "Description" : "Name of the CodeBuild project",
+      "Type" : "String"
     }
   },
   "Resources" : {
@@ -25,14 +30,24 @@
             }
         ],
         "WebsiteConfiguration" : {
-          "IndexDocument" : "index.html"
+          "IndexDocument" : {
+            "Fn:Join": [
+              "/",
+              [
+                {
+                  "Ref": "CodeBuildProject"
+                },
+                "index.html"
+              ]
+            ]
+          }
         }
       }
     },
     "CodeBuildProject" : {
       "Type" : "AWS::CodeBuild::Project",
       "Properties" : {
-          "Name": "ares-demo-static-site-build-project",
+          "Name": {"Ref": "CodeBuildProject"},
           "Source": {
               "Type": "GITHUB",
               "Location": "https://gcummins:1ccfa9078ca7bdfc09d9ab869b160b2b1a0d5bff@github.com/gcummins/ares.git"
