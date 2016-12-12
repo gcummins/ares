@@ -1,0 +1,1 @@
+aws --profile ares-demo cloudformation delete-stack --stack-name ARES-demo
