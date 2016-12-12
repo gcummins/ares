@@ -43,7 +43,7 @@
           },
           "Environment": {
               "Type": "LINUX_CONTAINER",
-              "Image": "aws/codebuild/java:openjdk-8",
+              "Image": "aws/codebuild/ubuntu-base:14.04",
               "ComputeType": "BUILD_GENERAL1_SMALL"
           },
           "ServiceRole": "arn:aws:iam::729161019481:role/CodeBuildServiceRole"
