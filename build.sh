@@ -1,0 +1,1 @@
+aws --profile ares-demo codebuild start-build --project-name sai-ares-demo-static-site-project
