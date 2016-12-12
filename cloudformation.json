@@ -32,9 +32,7 @@
     "CodeBuildProject" : {
       "Type" : "AWS::CodeBuild::Project",
       "Properties" : {
-        "Name": {
-          "Ref": "sai-ares-demo-static-site-project"
-        },
+        "Name": "sai-ares-demo-static-site-project",
         "Source": {
             "Type": "GITHUB",
             "Location": "https://gcummins:1ccfa9078ca7bdfc09d9ab869b160b2b1a0d5bff@github.com/gcummins/ares.git"
