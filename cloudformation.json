@@ -1,11 +1,18 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
   "Description" : "Demo stack for ARES project",
+  "Parameters" : {
+    "S3Bucket" : {
+      "Default" : "sai-ares-demo-static-site",
+      "Description" : "Name of the bucket that holds the site",
+      "Type" : "String"
+    }
+  },
   "Resources" : {
     "S3BucketStaticContent" : {
       "Type" : "AWS::S3::Bucket",
       "Properties" : {
-        "BucketName" : "sai-ares-demo-static-site",
+        "BucketName" : {"Ref" : "S3Bucket"},
         "AccessControl" : "PublicReadWrite",
         "Tags" : [
             {
@@ -20,6 +27,26 @@
         "WebsiteConfiguration" : {
           "IndexDocument" : "index.html"
         }
+      }
+    },
+    "CodeBuildProject" : {
+      "Type" : "AWS::CodeBuild::Project",
+      "Properties" : {
+          "Name": "ares-demo-static-site-build-project", 
+          "Source": {
+              "Type": "GITHUB", 
+              "Location": "https://gcummins:1ccfa9078ca7bdfc09d9ab869b160b2b1a0d5bff@github.com/gcummins/ares.git"
+          }, 
+          "Artifacts": {
+              "Type": "S3", 
+              "Location": {"Ref" : "S3Bucket"}
+          }, 
+          "Environment": {
+              "Type": "LINUX_CONTAINER",
+              "Image": "aws/codebuild/java:openjdk-8",
+              "ComputeType": "BUILD_GENERAL1_SMALL"
+          }, 
+          "ServiceRole": "arn:aws:iam::729161019481:role/CodeBuildServiceRole"
       }
     }
   }
