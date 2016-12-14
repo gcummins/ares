@@ -16,4 +16,4 @@ phases:
 artifacts:
   discard-paths: no
   files:
-    - **/*
+    - '**/*'
