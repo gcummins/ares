@@ -1,1 +1,1 @@
-aws --profile ares-demo cloudformation update-stack --stack-name ARES-demo --template-body file://cloudformation.json
+aws --profile ares-demo cloudformation update-stack --stack-name ARES-static-site --template-body file://cloudformation.json
