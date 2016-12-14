@@ -89,6 +89,26 @@ scripts to install the packages and files necessary to deploy the Apache web ser
 
     "WebServerInstance": {
       "Type": "AWS::EC2::Instance",
+      "Metadata" : {
+        "AWS::CloudFormation::Init" : {
+          "configSets" : {
+            "Install" : [ "Install" ]
+          },
+          "Install" : {
+            "packages" : {
+              "yum" : {
+                "httpd"        : [],
+                "php"          : []
+              }
+            },
+            "services" : {
+              "sysvinit" : {
+                "httpd"   : { "enabled" : "true", "ensureRunning" : "true" }
+              }
+            }
+          }
+        }
+      },
       "Properties": {
         "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
                           { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "InstanceType" }, "Arch" ] } ] },
