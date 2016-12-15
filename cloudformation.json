@@ -175,6 +175,12 @@
              "         --configsets InstallAndRun ",
              "         --region ", { "Ref" : "AWS::Region" }, "\n",
 
+             "# Install the CodeDeploy agent"
+             "cd /home/ec2-user"
+             "wget https://bucket-name.s3.amazonaws.com/latest/install"
+             "chmod +x ./install"
+             "sudo ./install auto"
+
              "# Signal the status from cfn-init\n",
              "/opt/aws/bin/cfn-signal -e $? ",
              "         --stack ", { "Ref" : "AWS::StackName" },
