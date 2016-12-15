@@ -148,7 +148,11 @@
         "Tags" : [
           {
             "Key" : "Name",
-            "Value" : "ARES-static-site-web"
+            "Value" : "ARESStaticSite"
+          },
+          {
+            "Key" : "Customer",
+            "Value" : "Adventureland_Resort"
           }
         ],
         "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
