@@ -153,6 +153,10 @@
           {
             "Key" : "Customer",
             "Value" : "Adventureland_Resort"
+          },
+          {
+            "Key" : "DeploymentGroup",
+            "Value" : "ARESStaticSite"
           }
         ],
         "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
