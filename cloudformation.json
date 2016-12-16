@@ -133,11 +133,7 @@
               "sysvinit" : {
                 "httpd"   : { "enabled" : "true", "ensureRunning" : "true" },
                 "cfn-hup" : { "enabled" : "true", "ensureRunning" : "true",
-                              "files" : ["/etc/cfn/cfn-hup.conf", "/etc/cfn/hooks.d/cfn-auto-reloader.conf"]},
-                "codedeploy-agent": {
-                  "enabled": "true",
-                  "ensureRunning": "true"
-                }
+                              "files" : ["/etc/cfn/cfn-hup.conf", "/etc/cfn/hooks.d/cfn-auto-reloader.conf"]}
               }
             }
           },
@@ -179,10 +175,11 @@
              "         --configsets InstallAndRun ",
              "         --region ", { "Ref" : "AWS::Region" }, "\n",
 
-             "# Install the AWS CodeDeploy Agent.\n",
-                "cd /home/ec2-user/\n",
-                "aws s3 cp 's3://aws-codedeploy-us-east-1/latest/codedeploy-agent.noarch.rpm' . || error_exit 'Failed to download AWS CodeDeploy Agent.'\n",
-                
+             "# Install the CodeDeploy agent"
+             "cd /home/ec2-user"
+             "wget https://bucket-name.s3.amazonaws.com/latest/install"
+             "chmod +x ./install"
+             "sudo ./install auto"
 
              "# Signal the status from cfn-init\n",
              "/opt/aws/bin/cfn-signal -e $? ",
